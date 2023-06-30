@@ -1,0 +1,77 @@
+// 1
+class Solution {
+public:
+    string reverseWords(string s) {
+        istringstream st(s);
+        string token = "";
+        string result = "";
+        while(st >> token)
+        {
+            result = token + " " + result;
+        }
+        return result.substr(0, result.length()-1);
+        
+    }
+};
+
+// 2
+class Solution {
+public:
+    string reverseWords(string s) {
+        string ans = "";
+        int i = s.length() - 1;
+        while(i >= 0)
+        {
+            while( i >= 0 && s[i] == ' ')
+            {
+                i--;
+            }
+            if( i<0) break;
+            int j = i;
+          
+            while( i >= 0 && s[i] !=  ' ')
+            {
+                i--;
+            }
+            
+                
+          ans +=  s.substr(i+1,j-i);
+          ans += " ";
+                
+        }
+        return ans.substr(0 , ans.length() - 1);
+        
+    }
+};
+
+// 3
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n = s.length();
+        string ans = "";
+        for(int i = 0 ; i<n ; i++)
+        {
+            string add = "";
+            while(i < n && s[i] == ' ')
+            {
+                i++;
+            }
+            while(i < n && s[i] != ' ')
+            {
+               add += s[i];
+               i++;
+            }
+            reverse(add.begin(), add.end());
+            ans += add;
+            ans += " ";
+        }
+        while(ans[ans.size()-1] == ' ')
+        {
+            ans.pop_back();
+        }
+      reverse(ans.begin(), ans.end());
+      return ans;
+        
+    }
+};
